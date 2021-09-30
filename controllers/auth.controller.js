@@ -3,7 +3,7 @@ const createError = require("http-errors");
 const jsonwebtoken = require("jsonwebtoken");
 
 module.exports.login = (req, res, next) => {
-  console.log(req.body, "____________________________________________")
+
   const { email, password } = req.body;
 
   User.findOne({ email: email }).then((user) => {

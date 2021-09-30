@@ -6,6 +6,7 @@ module.exports.isAuthenticated = (req, res, next) => {
 
   if (authorization) {
     const [type, token] = authorization.split(" ");
+
     if (type === "Bearer") {
       jwt.verify(
         token,
@@ -29,4 +30,11 @@ module.exports.isAuthenticated = (req, res, next) => {
   }
 };
 
-module.exports.isNotAuthenticated = (req, res, next) => {};
+module.exports.isNotAuthenticated = (req, res, next) => {
+  const authorization = req.header("Authorization");
+  if (!authorization) {
+    next();
+  } else {
+    next(createError(401))
+  };
+};

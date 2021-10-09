@@ -28,9 +28,6 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String
     },
-    favMovies: {
-      type: []
-    }
   },
   {
     timestamps: true
@@ -48,11 +45,18 @@ userSchema.pre("save", function (next) {
   }
 });
 
-// userSchema.virtual('logs', { 
-//   ref: 'Log',
-//   localField: '_id',
-//   foreignField: 'owner',
-//  });
+userSchema.virtual('favMovies', { 
+  ref: 'FavMovies',
+  localField: '_id',
+  foreignField: 'user',
+ });
+
+ userSchema.virtual('favTVShow', { 
+  ref: 'FavTVShow',
+  localField: '_id',
+  foreignField: 'user',
+ });
+
 
 userSchema.methods.checkPassword = function (passwordToCheck) {
   return bcrypt.compare(passwordToCheck, this.password);

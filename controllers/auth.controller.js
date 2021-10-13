@@ -27,7 +27,7 @@ module.exports.login = (req, res, next) => {
           res.json({
             access_token: jsonwebtoken.sign(
               { id: user._id },
-              process.env.JWT_SECRET || "changeme",
+              process.env.JWT_SECRET,
               {
                 expiresIn: "1d",
               }

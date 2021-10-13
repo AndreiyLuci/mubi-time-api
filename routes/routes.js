@@ -14,6 +14,7 @@ router.post("/api/v1/auth/google", authController.googleRegister)
 
 // Users
 router.get('/users/me', authMiddleware.isAuthenticated, userController.getCurrentUser)
+router.post('/users/:id/edit-profile', authMiddleware.isAuthenticated, upload.single('image'), userController.editUser)
 // ("/user/favs")
 
 // Favs

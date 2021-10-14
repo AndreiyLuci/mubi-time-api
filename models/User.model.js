@@ -28,11 +28,11 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String
     },
-    favMovies: {
+    favPelis: {
       type: [String],
       default: []
     },
-    favTVShows: {
+    favSeries: {
       type: [String],
       default: []
     },
@@ -53,17 +53,17 @@ userSchema.pre("save", function (next) {
   }
 });
 
-// userSchema.virtual('favMovies', { 
-//   ref: 'FavMovies',
-//   localField: '_id',
-//   foreignField: 'user',
-//  });
+userSchema.virtual('favMovies', { 
+  ref: 'FavMovies',
+  localField: '_id',
+  foreignField: 'user',
+ });
 
-//  userSchema.virtual('favTVShow', { 
-//   ref: 'FavTVShow',
-//   localField: '_id',
-//   foreignField: 'user',
-//  });
+ userSchema.virtual('favTVShow', { 
+  ref: 'FavTVShow',
+  localField: '_id',
+  foreignField: 'user',
+ });
 
 
 userSchema.methods.checkPassword = function (passwordToCheck) {

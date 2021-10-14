@@ -30,8 +30,6 @@ module.exports.markMovieFav = (req, res, next) => {
       }
     })
     .catch(next)
-
-    User.findByIdandUpdate()
   
 }
 
